@@ -16,6 +16,12 @@ COPY ["Bazario.Notification/src/Templates", "Bazario.Notification/Templates"]
 COPY Bazario.AspNetCore.Shared/NuGetPackages /nuget-packages
 RUN dotnet nuget add source /nuget-packages --name NuGetPackages
 
+# Copy the Bazario.Docker scripts and entrypoints
+COPY Bazario.Docker/scripts/wait-for-it.sh ./scripts/wait-for-it.sh
+COPY Bazario.Docker/scripts/entrypoints/bazario-notification-entrypoint.sh ./scripts/entrypoints/bazario-notification-entrypoint.sh
+
+RUN chmod +x ./scripts/entrypoints/bazario-notification-entrypoint.sh ./scripts/wait-for-it.sh
+
 RUN dotnet restore "./Bazario.Notification/Bazario.Notification.csproj"
 COPY Bazario.Notification/src/ .
 
@@ -30,4 +36,10 @@ RUN dotnet publish "./Bazario.Notification.csproj" -c $BUILD_CONFIGURATION -o /a
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+
+# Copy the Bazario.Docker scripts to the final image
+
+COPY --from=build src/scripts/entrypoints/bazario-notification-entrypoint.sh scripts/entrypoints/bazario-notification-entrypoint.sh
+COPY --from=build src/scripts/wait-for-it.sh scripts/wait-for-it.sh
+
 ENTRYPOINT ["dotnet", "Bazario.Notification.dll"]
