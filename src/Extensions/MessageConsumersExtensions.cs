@@ -4,7 +4,7 @@ using Bazario.Notification.Consumers;
 
 namespace Bazario.Notification.Extensions
 {
-    public static class MessageConsumerExtensions
+    public static class MessageConsumersExtensions
     {
         public static IServiceCollection AddMessageConsumers(
             this IServiceCollection services)
