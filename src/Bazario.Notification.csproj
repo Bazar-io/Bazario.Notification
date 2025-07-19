@@ -13,8 +13,8 @@
   <ItemGroup>
     <PackageReference Include="Bazario.AspNetCore.Shared.Abstractions" Version="1.0.5" />
     <PackageReference Include="Bazario.AspNetCore.Shared.Contracts" Version="1.0.1" />
-    <PackageReference Include="Bazario.AspNetCore.Shared.Infrastructure" Version="1.4.3" />
-    <PackageReference Include="Bazario.AspNetCore.Shared.Options" Version="1.0.1" />
+    <PackageReference Include="Bazario.AspNetCore.Shared.Infrastructure" Version="1.4.5" />
+    <PackageReference Include="Bazario.AspNetCore.Shared.Options" Version="1.0.2" />
     <PackageReference Include="FluentEmail.Razor" Version="3.0.2" />
     <PackageReference Include="FluentEmail.Smtp" Version="3.0.2" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.7" />
